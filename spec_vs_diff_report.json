@@ -1,0 +1,72 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T08:30:58.966Z",
+  "summary": "The implementation covers most requirements well. REQ-1 (backend), REQ-2 (login), REQ-3 (dashboard with deterministic scores), REQ-6 (risk analysis), and REQ-7 (visual theme) are fully implemented. However, REQ-4 and REQ-5 use Recharts instead of react-chartjs-2/Chart.js as explicitly required, and the required Chart.js component registrations are absent. A ProfileSetupModal and authorization mixin were added without being requested.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Line chart must use react-chartjs-2 and Chart.js with all required Chart.js components registered (CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend)",
+      "reason": "ScreenTimeChart.tsx uses Recharts (LineChart, Line from 'recharts'), not react-chartjs-2/Chart.js. No Chart.js component registrations are present anywhere in the diff.",
+      "evidence": [
+        "frontend/src/components/ScreenTimeChart.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Bar chart must use react-chartjs-2 and Chart.js",
+      "reason": "AppUsageChart.tsx uses Recharts (BarChart, Bar from 'recharts'), not react-chartjs-2/Chart.js.",
+      "evidence": [
+        "frontend/src/components/AppUsageChart.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "ProfileSetupModal — a modal prompting new users to enter their name on first login",
+      "reason": "The build request does not specify any profile setup or onboarding modal. This feature was added without being requested.",
+      "evidence": [
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "AccessControl/authorization mixin applied to backend actor methods with permission checks that trap unauthorized callers",
+      "reason": "The build request only asks for per-user keyed query/update methods. Adding MixinAuthorization, AccessControl, and permission checks was not requested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Notification bell button in the Dashboard navbar",
+      "reason": "The build request specifies the navbar should show app name, user identity info, and a logout button only. A bell/notification button was not requested.",
+      "evidence": [
+        "frontend/src/components/Dashboard.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.85,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AppUsageChart.tsx",
+    "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/Login.tsx",
+    "frontend/src/components/MetricCard.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/RiskAnalysis.tsx",
+    "frontend/src/components/ScreenTimeChart.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

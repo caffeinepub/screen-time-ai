@@ -1,0 +1,166 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Screen Time Health Intelligence App - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Implement Internet Identity authentication with a centered login screen displaying app title, subtitle, and login button on a deep blue gradient background",
+      "acceptanceCriteria": [
+        "Login screen renders centered on a deep blue gradient background (#1e3c72 to #2a5298)",
+        "Title 'Screen Time Health Intelligence' and subtitle are visible",
+        "Clicking the login button triggers Internet Identity authentication",
+        "After successful login, user is redirected to the Dashboard",
+        "If not authenticated, only the login screen is shown"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Login.tsx",
+          "operation": "create",
+          "description": "Create a Login component that displays a centered card with app title 'Screen Time Health Intelligence', subtitle 'AI-powered behavioral risk prediction for burnout & fatigue', and a login button. Use the existing useInternetIdentity hook for authentication. Apply deep blue gradient background (#1e3c72 to #2a5298). Include the generated hero logo image at frontend/public/assets/generated/logo-shield.dim_256x256.png in the card design. Verify the authorization component's usage instructions before implementing, ensuring login triggers Internet Identity flow and redirects to Dashboard on success."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update App component to conditionally render Login component when user is not authenticated, and Dashboard when authenticated. Use the useInternetIdentity hook to check authentication state. Ensure no application data is shown before login."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build an authenticated Dashboard with navbar, welcome section, four deterministic risk metric cards, and trend indicators based on user principal hash",
+      "acceptanceCriteria": [
+        "Dashboard is only accessible when the user is authenticated",
+        "Navbar displays app name and a functional logout button",
+        "Four metric cards display risk scores derived deterministically from the user principal hash",
+        "Each card has a distinct color-coded left border (red/orange, yellow, blue, green)",
+        "Scores remain consistent across page reloads for the same user"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "create",
+          "description": "Create Dashboard component accessible only when authenticated. Include: (1) top navbar with app name 'Screen Time Health Intelligence' on the left and user identity with logout button on the right using useInternetIdentity hook; (2) welcome section displaying 'Welcome back, {name}' using user profile from getCallerUserProfile (or principal if no profile); (3) four metric cards (Burnout Risk, Eye Strain Risk, Sleep Disruption, Overall Health Score) with deterministic score calculation using formula: hash user principal string, then burnout = 45 + (hash % 40), eyeStrain = 50 + (hash % 35), sleepDisruption = 30 + (hash % 45), healthScore = 100 - (40 + (hash % 30)); (4) color-coded left borders (red for burnout, orange for eye strain, blue for sleep, green for health); (5) trend indicators (up/down arrows) on each card. Verify the authorization component's usage instructions to ensure proper authentication checks and logout flow with cache clearing."
+        },
+        {
+          "path": "frontend/src/components/MetricCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable MetricCard component that accepts props for title, value (percentage), borderColor, and trend direction. Display large percentage value, trend indicator icon (arrow up/down), and apply the specified left border color. Use white card background with shadow and hover transition."
+        },
+        {
+          "path": "frontend/src/hooks/useHashedRiskScores.ts",
+          "operation": "create",
+          "description": "Create custom hook useHashedRiskScores that takes a user principal string, generates a deterministic hash, and returns an object with burnout, eyeStrain, sleepDisruption, and healthScore using the specified formulas. Ensure scores are consistent across rerenders for the same principal."
+        },
+        {
+          "path": "frontend/src/hooks/useGetCallerUserProfile.ts",
+          "operation": "create",
+          "description": "Create a custom hook useGetCallerUserProfile that queries the backend getCallerUserProfile method using React Query and the useActor hook. Return user profile including name, or null if no profile exists. Follow the authorization component's usage instructions for proper query setup with enabled checks to prevent modal flash (enable only when actor is available and not fetching)."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Create ProfileSetupModal component that prompts new users to enter their name on first login. Use the saveCallerUserProfile backend method. Show modal only when isAuthenticated && !profileLoading && isFetched && userProfile === null. On submit, call saveCallerUserProfile with the entered name and invalidate the user profile query. Verify the authorization component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a Line Chart showing Screen Time vs Burnout Risk for the last 7 days using react-chartjs-2 with proper Chart.js component registration",
+      "acceptanceCriteria": [
+        "Line chart renders without errors",
+        "Both datasets (Screen Time and Burnout Risk) are visible with distinct colors",
+        "X-axis labels show Mon, Tue, Wed, Thu, Fri, Sat, Sun",
+        "Chart is displayed inside a white card with a shadow"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ScreenTimeChart.tsx",
+          "operation": "create",
+          "description": "Create ScreenTimeChart component using react-chartjs-2 and Chart.js. Register all required Chart.js components: CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend. Display a line chart titled 'Screen Time vs Burnout Risk (Last 7 Days)' with two datasets: Screen Time (hours, blue line) and Burnout Risk (%, orange line). Use labels Mon, Tue, Wed, Thu, Fri, Sat, Sun with realistic simulated data (e.g., screen time 6-10 hours, burnout 40-75%). Wrap chart in a white card with shadow."
+        },
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Import and render ScreenTimeChart component below the metric cards section in the Dashboard layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a Bar Chart showing Daily App Usage Breakdown with five app categories using react-chartjs-2",
+      "acceptanceCriteria": [
+        "Bar chart renders without errors",
+        "All five categories are represented with distinct bar colors",
+        "Chart is placed in a white card with shadow below the line chart"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AppUsageChart.tsx",
+          "operation": "create",
+          "description": "Create AppUsageChart component using react-chartjs-2. Display a bar chart titled 'Daily App Usage Breakdown' with five categories: Social Media, Work Apps, Entertainment, News, Health Apps. Use distinct colorful bars (e.g., pink, blue, purple, green, teal) with simulated hours per day data (e.g., 3.5, 4.2, 2.8, 1.5, 0.8). Wrap chart in a white card with shadow."
+        },
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Import and render AppUsageChart component below the ScreenTimeChart in the Dashboard layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add a Risk Analysis section with two columns showing risk factors and recommendations with appropriate styling and icons",
+      "acceptanceCriteria": [
+        "Two-column risk analysis section renders below the charts",
+        "Risk factors column has a red-tinted background and warning icons",
+        "Recommendations column has a green-tinted background and checkmark icons",
+        "All four risk factors and four recommendations are listed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/RiskAnalysis.tsx",
+          "operation": "create",
+          "description": "Create RiskAnalysis component with two-column layout. Left column 'Risk Factors Detected' with red-tinted background (#fef2f2 or similar) listing: 'Late night usage detected', 'Extended continuous sessions', 'High social media ratio', 'Insufficient break intervals', each with a warning icon (⚠️ or lucide-react AlertTriangle). Right column 'Recommendations' with green-tinted background (#f0fdf4 or similar) listing: 'Take 20-20-20 eye breaks', 'Limit screens after 9 PM', 'Use app timers for social media', 'Enable night mode after sunset', each with a checkmark icon (✓ or lucide-react CheckCircle). Use white cards with shadow for each column."
+        },
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Import and render RiskAnalysis component below the AppUsageChart in the Dashboard layout, completing the full dashboard view."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a professional, hackathon-ready visual theme with deep blue gradient, white cards, orange accents, responsive layouts, and smooth transitions",
+      "acceptanceCriteria": [
+        "Header/navbar uses the deep blue gradient",
+        "Metric cards have hover transitions and colored left borders",
+        "Orange accent is used on primary buttons and highlights",
+        "Layout is responsive and does not break on common screen sizes",
+        "Overall appearance is polished and presentation-ready"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global styles to include deep blue gradient definition (#1e3c72 to #2a5298) as a reusable CSS class or Tailwind utility. Ensure body background is light gray or white. Define smooth transition utilities for card hover effects. Set system font stack for clean typography."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme to include custom colors: deep blue gradient stops (#1e3c72, #2a5298) and orange accent (#ff7a18). Add custom transition timings for smooth hover effects. Ensure responsive breakpoints are configured for metric card grid layouts (e.g., 1 column mobile, 2 columns tablet, 4 columns desktop)."
+        },
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Apply deep blue gradient background to the navbar. Ensure metric cards use responsive grid layout (grid-cols-1 md:grid-cols-2 lg:grid-cols-4) with consistent spacing. Add hover transitions (transform scale-105, shadow-lg) to all card components. Use orange accent color (#ff7a18) for primary buttons and highlights."
+        },
+        {
+          "path": "frontend/src/components/Login.tsx",
+          "operation": "modify",
+          "description": "Ensure login button uses orange accent color (#ff7a18) for the CTA. Apply smooth hover transition. Verify card design uses white background with shadow and is centered with appropriate padding."
+        }
+      ]
+    }
+  ]
+}

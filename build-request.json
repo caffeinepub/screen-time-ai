@@ -1,0 +1,177 @@
+{
+  "kind": "build_request",
+  "title": "Screen Time Health Intelligence App",
+  "projectName": "Screen Time Health",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a Motoko backend actor that stores per-user health metrics and screen time data. Expose query and update methods for saving and retrieving risk scores and simulated usage data, keyed by user principal.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "All data is simulated - no backend needed"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend actor compiles without errors",
+        "Actor exposes at least a stable data store and query/update methods for user risk profiles"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement Internet Identity authentication (using the existing useInternetIdentity hook) as the login mechanism. Display a centered login screen with the app title 'Screen Time Health Intelligence', subtitle 'AI-powered behavioral risk prediction for burnout & fatigue', and a prominent login button. Show a card-style design with a deep blue gradient background.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Login Page (src/Login.js)",
+          "App title: \"Screen Time Health Intelligence\"",
+          "Subtitle: \"AI-powered behavioral risk prediction for burnout & fatigue\"",
+          "Google Login button"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Login screen renders centered on a deep blue gradient background (#1e3c72 to #2a5298)",
+        "Title 'Screen Time Health Intelligence' and subtitle are visible",
+        "Clicking the login button triggers Internet Identity authentication",
+        "After successful login, user is redirected to the Dashboard",
+        "If not authenticated, only the login screen is shown"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a full-featured Dashboard page accessible only when authenticated. Include: (1) a top navbar with the app name on the left and user identity info plus a logout button on the right; (2) a welcome section showing 'Welcome back, {identity}' and the user's principal; (3) four metric cards (Burnout Risk, Eye Strain Risk, Sleep Disruption, Overall Health Score) with color-coded left borders and large percentage values; (4) deterministic risk score generation based on a hash of the user's principal string using the formula: burnout = 45 + (hash % 40), eyeStrain = 50 + (hash % 35), sleepDisruption = 30 + (hash % 45), healthScore = 100 - (40 + (hash % 30)); (5) trend indicators on each metric card.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Top Navbar",
+          "Welcome Section",
+          "Metrics Cards Row",
+          "Simulated AI Risk Calculation",
+          "Generate scores based on user's email hash"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard is only accessible when the user is authenticated",
+        "Navbar displays app name and a functional logout button",
+        "Four metric cards display risk scores derived deterministically from the user principal hash",
+        "Each card has a distinct color-coded left border (red/orange, yellow, blue, green)",
+        "Scores remain consistent across page reloads for the same user"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a Line Chart on the Dashboard titled 'Screen Time vs Burnout Risk (Last 7 Days)' using react-chartjs-2 and Chart.js. Register all required Chart.js components (CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend). The chart must show two datasets: Screen Time (hours) and Burnout Risk (%), with labels Mon–Sun and realistic simulated data.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Line Chart using react-chartjs-2",
+          "Screen Time vs Burnout Risk (Last 7 Days)",
+          "Register all required Chart.js components"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Line chart renders without errors",
+        "Both datasets (Screen Time and Burnout Risk) are visible with distinct colors",
+        "X-axis labels show Mon, Tue, Wed, Thu, Fri, Sat, Sun",
+        "Chart is displayed inside a white card with a shadow"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a Bar Chart on the Dashboard titled 'Daily App Usage Breakdown' using react-chartjs-2. Show five categories: Social Media, Work Apps, Entertainment, News, Health Apps with colorful bars representing hours per day (simulated data). Display inside a white card.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Bar Chart using react-chartjs-2",
+          "Daily App Usage Breakdown",
+          "Categories: Social Media, Work Apps, Entertainment, News, Health Apps"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Bar chart renders without errors",
+        "All five categories are represented with distinct bar colors",
+        "Chart is placed in a white card with shadow below the line chart"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add a Risk Analysis section on the Dashboard with two columns: 'Risk Factors Detected' (with warning icons) listing: Late night usage detected, Extended continuous sessions, High social media ratio, Insufficient break intervals; and 'Recommendations' (with checkmark icons) listing: Take 20-20-20 eye breaks, Limit screens after 9 PM, Use app timers for social media, Enable night mode after sunset. Style risk factors in a red-tinted card and recommendations in a green-tinted card.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Risk Analysis Section",
+          "Risk factors: Late night usage detected",
+          "Recommendations: Take 20-20-20 eye breaks"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Two-column risk analysis section renders below the charts",
+        "Risk factors column has a red-tinted background and warning icons",
+        "Recommendations column has a green-tinted background and checkmark icons",
+        "All four risk factors and four recommendations are listed"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a professional, hackathon-ready visual theme across the entire app: deep blue gradient (#1e3c72 to #2a5298) for the header/navbar, white cards with subtle box shadows, orange accent color (#ff7a18) for CTAs and highlights, clean system font typography, responsive grid layouts for metric cards, smooth hover transitions on cards, and consistent spacing throughout.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Color scheme: Deep blue gradient (#1e3c72 to #2a5298)",
+          "Orange accent (#ff7a18)",
+          "Smooth hover transitions on cards",
+          "professional, hackathon-ready design"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header/navbar uses the deep blue gradient",
+        "Metric cards have hover transitions and colored left borders",
+        "Orange accent is used on primary buttons and highlights",
+        "Layout is responsive and does not break on common screen sizes",
+        "Overall appearance is polished and presentation-ready"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use Internet Identity (existing useInternetIdentity hook) instead of Firebase Google Auth — Firebase is not supported on this platform",
+    "All Motoko logic must remain in the single backend/main.mo actor file",
+    "Do not edit any files under frontend/src/hooks/ or frontend/src/components/ui",
+    "Do not use Firebase, external authentication providers, or cloud databases",
+    "Chart data must be fully simulated on the frontend — no external API calls"
+  ],
+  "nonGoals": [
+    "Real Firebase or Google Authentication integration",
+    "Real screen time data collection from device APIs",
+    "Backend persistence of chart/usage data (charts use frontend-only simulated data)",
+    "Mobile app or React Native version",
+    "Real AI/ML model for risk prediction"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Screen time health app hero logo — a glowing shield icon with an eye and waveform motif on a deep blue background (logo-shield.dim_256x256.png)"
+    ],
+    "edits": []
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Main Motoko actor implementing user profile management, risk score tracking, screen time logging, and health metrics storage with role-based access control via a MixinAuthorization pattern.",
+  "feature_evidence.json": "Feature evidence report mapping implemented features (Internet Identity login, dashboard, charts, risk analysis) to their source files, components, and test IDs with confidence ratings.",
+  "frontend-file-summaries.txt": "JSON document containing one-sentence summaries of each frontend source file, serving as a reference for the project's frontend architecture.",
+  "frontend/index.css": "Global Tailwind CSS entry point defining OKLCH-based design tokens for light and dark modes, including colors for background, foreground, cards, charts, and sidebar components.",
+  "frontend/index.html": "Minimal HTML shell for the React SPA titled 'Screen Time Health Intelligence', mounting the app at the #root div and loading the main TypeScript entry point.",
+  "frontend/src/App.tsx": "Root React component that gates rendering between Login and Dashboard based on Internet Identity auth state, shows a loading spinner during initialization, and overlays ProfileSetupModal for new users.",
+  "frontend/src/components/AppUsageChart.tsx": "Recharts bar chart displaying average daily app usage hours across five color-coded categories, with custom tooltips and value labels above each bar.",
+  "frontend/src/components/Dashboard.tsx": "Full authenticated dashboard featuring a sticky navy navbar, deterministic risk metric cards derived from the user's principal hash, screen time and app usage charts, and a risk analysis section.",
+  "frontend/src/components/Login.tsx": "Renders the login page with animated background, feature pills, and an Internet Identity sign-in button, using the `useInternetIdentity` hook to handle login state and errors.",
+  "frontend/src/components/MetricCard.tsx": "Displays a single health metric as a card with an icon, value, unit, trend badge (up/down), and a progress bar styled with a configurable border color.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog that prompts a new user to enter their name and saves the profile via the `useSaveCallerUserProfile` mutation, calling `onSaved` on success.",
+  "frontend/src/components/RiskAnalysis.tsx": "Renders a two-column panel showing hardcoded risk factors (with alert icons) and health recommendations (with check icons) for screen time behavior.",
+  "frontend/src/components/ScreenTimeChart.tsx": "Displays a dual-axis Recharts line chart comparing daily screen time (hours) against burnout risk (%) over the last 7 days using hardcoded sample data.",
+  "frontend/src/hooks/useActor.ts": "Custom hook that creates and caches an authenticated or anonymous ICP backend actor using React Query, and invalidates dependent queries whenever the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides an `InternetIdentityProvider` context and `useInternetIdentity` hook that manage DFINITY AuthClient lifecycle, login/logout, and identity persistence across page reloads.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching (`useGetCallerUserProfile`) and saving (`useSaveCallerUserProfile`) the authenticated user's profile via the ICP backend actor.",
+  "frontend/src/index.css": "Global CSS file that imports Inter font, sets up Tailwind directives, and defines OKLCH-based CSS custom properties for light and dark themes including colors, radius, charts, and sidebar tokens.",
+  "frontend/src/main.tsx": "React app entry point that wraps the App component with TanStack QueryClientProvider and a custom InternetIdentityProvider before mounting to the DOM.",
+  "frontend/src/utils/urlParams.ts": "Utility module providing functions to read URL query parameters (supporting both regular and hash-based routing), persist them to sessionStorage, and clean sensitive params from the URL hash.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration that maps OKLCH CSS variables to semantic color tokens, extends theme with custom brand colors, border radii, box shadows, and accordion keyframe animations, and registers typography, container-queries, and animate plugins.",
+  "project_state.json": "Project state metadata file tracking the current version, architectural notes, existing features, and known issues for a Screen Time Health Intelligence React app using Internet Identity auth and deterministic AI risk scoring."
+}

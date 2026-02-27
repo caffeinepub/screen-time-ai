@@ -1,0 +1,218 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T08:30:58.969Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 7,
+    "implemented": 6,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a Motoko backend actor that stores per-user health metrics and screen time data. Expose query and update methods for saving and retrieving risk scores and simulated usage data, keyed by user principal.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement Internet Identity authentication (using the existing useInternetIdentity hook) as the login mechanism. Display a centered login screen with the app title 'Screen Time Health Intelligence', subtitle 'AI-powered behavioral risk prediction for burnout & fatigue', and a prominent login button. Show a card-style design with a deep blue gradient background.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Login.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Login.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Build a full-featured Dashboard page accessible only when authenticated. Include: (1) a top navbar with the app name on the left and user identity info plus a logout button on the right; (2) a welcome section showing 'Welcome back, {identity}' and the user's principal; (3) four metric cards (Burnout Risk, Eye Strain Risk, Sleep Disruption, Overall Health Score) with color-coded left borders and large percentage values; (4) deterministic risk score generation based on a hash of the user's principal string using the formula: burnout = 45 + (hash % 40), eyeStrain = 50 + (hash % 35), sleepDisruption = 30 + (hash % 45), healthScore = 100 - (40 + (hash % 30)); (5) trend indicators on each metric card.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/components/MetricCard.tsx",
+          "frontend/src/hooks/useHashedRiskScores.ts",
+          "frontend/src/hooks/useGetCallerUserProfile.ts",
+          "frontend/src/components/ProfileSetupModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/components/MetricCard.tsx",
+          "frontend/src/components/ProfileSetupModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add a Line Chart on the Dashboard titled 'Screen Time vs Burnout Risk (Last 7 Days)' using react-chartjs-2 and Chart.js. Register all required Chart.js components (CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend). The chart must show two datasets: Screen Time (hours) and Burnout Risk (%), with labels Mon–Sun and realistic simulated data.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ScreenTimeChart.tsx",
+          "frontend/src/components/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ScreenTimeChart.tsx",
+          "frontend/src/components/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Add a Bar Chart on the Dashboard titled 'Daily App Usage Breakdown' using react-chartjs-2. Show five categories: Social Media, Work Apps, Entertainment, News, Health Apps with colorful bars representing hours per day (simulated data). Display inside a white card.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AppUsageChart.tsx",
+          "frontend/src/components/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AppUsageChart.tsx",
+          "frontend/src/components/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Add a Risk Analysis section on the Dashboard with two columns: 'Risk Factors Detected' (with warning icons) listing: Late night usage detected, Extended continuous sessions, High social media ratio, Insufficient break intervals; and 'Recommendations' (with checkmark icons) listing: Take 20-20-20 eye breaks, Limit screens after 9 PM, Use app timers for social media, Enable night mode after sunset. Style risk factors in a red-tinted card and recommendations in a green-tinted card.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/RiskAnalysis.tsx",
+          "frontend/src/components/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/RiskAnalysis.tsx",
+          "frontend/src/components/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Apply a professional, hackathon-ready visual theme across the entire app: deep blue gradient (#1e3c72 to #2a5298) for the header/navbar, white cards with subtle box shadows, orange accent color (#ff7a18) for CTAs and highlights, clean system font typography, responsive grid layouts for metric cards, smooth hover transitions on cards, and consistent spacing throughout.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/components/Login.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/components/Login.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/logo-shield.dim_256x256.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AppUsageChart.tsx",
+    "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/Login.tsx",
+    "frontend/src/components/MetricCard.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/RiskAnalysis.tsx",
+    "frontend/src/components/ScreenTimeChart.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

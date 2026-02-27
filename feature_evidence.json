@@ -1,0 +1,128 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-internet-identity-authentication-using-the-existing-useinternetidentity-hook-as-the-login-mechanism-display-a-centered-login-screen-with-the-app-title-screen-time-health-intelligence-subtitle-ai-powered-behavioral-risk-prediction-for-burnout-fatigue-and-a-prominent-login-button-show-a-card-style-design-with-a-deep-blue-gradient-background",
+      "featureTitle": "Implement Internet Identity authentication (using the existing useInternetIdentity hook) as the login mechanism. Display a centered login screen with the app title 'Screen Time Health Intelligence', subtitle 'AI-powered behavioral risk prediction for burnout & fatigue', and a prominent login button. Show a card-style design with a deep blue gradient background.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Login.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-full-featured-dashboard-page-accessible-only-when-authenticated-include-1-a-top-navbar-with-the-app-name-on-the-left-and-user-identity-info-plus-a-logout-button-on-the-right-2-a-welcome-section-showing-welcome-back-identity-and-the-user-s-principal-3-four-metric-cards-burnout-risk-eye-strain-risk-sleep-disruption-overall-health-score-with-color-coded-left-borders-and-large-percentage-values-4-deterministic-risk-score-generation-based-on-a-hash-of-the-user-s-principal-string-using-the-formula-burnout-45-hash-40-eyestrain-50-hash-35-sleepdisruption-30-hash-45-healthscore-100-40-hash-30-5-trend-indicators-on-each-metric-card",
+      "featureTitle": "Build a full-featured Dashboard page accessible only when authenticated. Include: (1) a top navbar with the app name on the left and user identity info plus a logout button on the right; (2) a welcome section showing 'Welcome back, {identity}' and the user's principal; (3) four metric cards (Burnout Risk, Eye Strain Risk, Sleep Disruption, Overall Health Score) with color-coded left borders and large percentage values; (4) deterministic risk score generation based on a hash of the user's principal string using the formula: burnout = 45 + (hash % 40), eyeStrain = 50 + (hash % 35), sleepDisruption = 30 + (hash % 45), healthScore = 100 - (40 + (hash % 30)); (5) trend indicators on each metric card.",
+      "files": [
+        "frontend/src/components/Dashboard.tsx",
+        "frontend/src/components/MetricCard.tsx",
+        "frontend/src/components/ProfileSetupModal.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-line-chart-on-the-dashboard-titled-screen-time-vs-burnout-risk-last-7-days-using-react-chartjs-2-and-chart-js-register-all-required-chart-js-components-categoryscale-linearscale-pointelement-lineelement-barelement-title-tooltip-legend-the-chart-must-show-two-datasets-screen-time-hours-and-burnout-risk-with-labels-mon-sun-and-realistic-simulated-data",
+      "featureTitle": "Add a Line Chart on the Dashboard titled 'Screen Time vs Burnout Risk (Last 7 Days)' using react-chartjs-2 and Chart.js. Register all required Chart.js components (CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend). The chart must show two datasets: Screen Time (hours) and Burnout Risk (%), with labels Mon–Sun and realistic simulated data.",
+      "files": [
+        "frontend/src/components/Dashboard.tsx",
+        "frontend/src/components/ScreenTimeChart.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-bar-chart-on-the-dashboard-titled-daily-app-usage-breakdown-using-react-chartjs-2-show-five-categories-social-media-work-apps-entertainment-news-health-apps-with-colorful-bars-representing-hours-per-day-simulated-data-display-inside-a-white-card",
+      "featureTitle": "Add a Bar Chart on the Dashboard titled 'Daily App Usage Breakdown' using react-chartjs-2. Show five categories: Social Media, Work Apps, Entertainment, News, Health Apps with colorful bars representing hours per day (simulated data). Display inside a white card.",
+      "files": [
+        "frontend/src/components/AppUsageChart.tsx",
+        "frontend/src/components/Dashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-risk-analysis-section-on-the-dashboard-with-two-columns-risk-factors-detected-with-warning-icons-listing-late-night-usage-detected-extended-continuous-sessions-high-social-media-ratio-insufficient-break-intervals-and-recommendations-with-checkmark-icons-listing-take-20-20-20-eye-breaks-limit-screens-after-9-pm-use-app-timers-for-social-media-enable-night-mode-after-sunset-style-risk-factors-in-a-red-tinted-card-and-recommendations-in-a-green-tinted-card",
+      "featureTitle": "Add a Risk Analysis section on the Dashboard with two columns: 'Risk Factors Detected' (with warning icons) listing: Late night usage detected, Extended continuous sessions, High social media ratio, Insufficient break intervals; and 'Recommendations' (with checkmark icons) listing: Take 20-20-20 eye breaks, Limit screens after 9 PM, Use app timers for social media, Enable night mode after sunset. Style risk factors in a red-tinted card and recommendations in a green-tinted card.",
+      "files": [
+        "frontend/src/components/Dashboard.tsx",
+        "frontend/src/components/RiskAnalysis.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-professional-hackathon-ready-visual-theme-across-the-entire-app-deep-blue-gradient-1e3c72-to-2a5298-for-the-header-navbar-white-cards-with-subtle-box-shadows-orange-accent-color-ff7a18-for-ctas-and-highlights-clean-system-font-typography-responsive-grid-layouts-for-metric-cards-smooth-hover-transitions-on-cards-and-consistent-spacing-throughout",
+      "featureTitle": "Apply a professional, hackathon-ready visual theme across the entire app: deep blue gradient (#1e3c72 to #2a5298) for the header/navbar, white cards with subtle box shadows, orange accent color (#ff7a18) for CTAs and highlights, clean system font typography, responsive grid layouts for metric cards, smooth hover transitions on cards, and consistent spacing throughout.",
+      "files": [
+        "frontend/src/components/Dashboard.tsx",
+        "frontend/src/components/Login.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

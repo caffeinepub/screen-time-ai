@@ -1,0 +1,13 @@
+{
+  "frontend/src/App.tsx": "Root app component that conditionally renders Login or Dashboard based on Internet Identity authentication state, with a ProfileSetupModal overlay for new users and a loading spinner during initialization.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching and saving the caller's user profile via the backend actor, with proper enabled guards and cache invalidation.",
+  "frontend/src/components/Login.tsx": "Centered login page with deep blue gradient background, animated blobs, app logo, feature pills, and an Internet Identity login button with error handling.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog that prompts newly authenticated users to enter their name on first login, saving it via the saveCallerUserProfile backend method.",
+  "frontend/src/components/MetricCard.tsx": "Reusable card component displaying a health risk metric with a color-coded left border, large percentage value, trend indicator badge, description, and animated progress bar.",
+  "frontend/src/components/ScreenTimeChart.tsx": "Line chart built with Recharts showing Screen Time (hrs) vs Burnout Risk (%) over the last 7 days, with dual Y-axes, a custom navy tooltip, and responsive container — no chart.js dependency.",
+  "frontend/src/components/AppUsageChart.tsx": "Bar chart built with Recharts displaying daily app usage breakdown across five color-coded categories, with a custom tooltip and value labels above each bar — no chart.js dependency.",
+  "frontend/src/components/RiskAnalysis.tsx": "Two-column risk analysis section with a red-tinted card listing four detected risk factors (with AlertTriangle icons) and a green-tinted card listing four recommendations (with CheckCircle icons).",
+  "frontend/src/components/Dashboard.tsx": "Full authenticated dashboard with a sticky deep-blue gradient navbar, welcome hero section with quick stats, four deterministic risk metric cards, line/bar charts, risk analysis section, and a branded footer.",
+  "frontend/src/index.css": "Global styles with OKLCH color tokens for light/dark modes, Inter font import, and utility classes for the navy gradient and dashboard background.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with Inter font, custom brand colors (navy-deep, navy-light, orange-accent), card shadow variants, and all existing shadcn/ui token mappings."
+}
